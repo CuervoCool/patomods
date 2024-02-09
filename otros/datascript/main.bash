@@ -240,33 +240,7 @@ apt-get install net-tools -y
 printTitle "Versión actual"
 lsb_release -d
 
-apt-get install curl -y
-apt-get install lsof -y
-apt-get install sudo -y
-apt-get install figlet -y
-apt-get install cowsay -y
-apt-get install bc -y
-apt-get install python -y
-apt-get install at -y
-apt-get install apache2 -y
-sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
-service apache2 restart
-clear
-clear
-clear
-msg -bar2
-echo ""
-echo -e "\e[91mESCOJER PRIMERO #All locales# Y LUEGO #en_US.UTF-8# \e[0m"
-echo ""
-sleep 7s
- export LANGUAGE=en_US.UTF-8\
-   && export LANG=en_US.UTF-8\
-   && export LC_ALL=en_US.UTF-8\
-   && export LC_CTYPE="en_US.UTF-8"\
-   && locale-gen en_US.UTF-8\
-   && sudo apt-get -y install language-pack-en-base\
-   && sudo dpkg-reconfigure locales
-
 fi
 clear
 }
+
