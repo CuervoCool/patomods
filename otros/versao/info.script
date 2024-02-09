@@ -1,5 +1,6 @@
 #!/bin/bash
 # powered by @drowkid01
+
 case $1 in
  --casita-mod)
   declare -A scode=( [versao]="10X" [power]="✧ | ᴅʀᴏᴡᴋɪᴅ | ✧" )
@@ -20,7 +21,6 @@ case $1 in
 	}
  ;;
  --adm-rufu)
-	echo -e "\e[1;31meweee awantala, con broncas acabé solo los dos primeros mods we, nmms xD"
+	echo -e "\e[1;31m [x] mod no encontrado!, ni de pedo tengo fecha para este mod [x]"
  ;;
-esac
 esac
