@@ -91,13 +91,6 @@ SEMCOR='\e[0m'
    esac
 }
 
-cat << eof > ${file[script]}
-$(echo "${sinfo[files]}")
-$(echo "${sinfo[name]}")
-$(echo "${sinfo[ruta]}")
-$(echo "${url}")
-eof
-
 dependencias(){
 clear
 function printTitle
