@@ -1,7 +1,7 @@
 #!/bin/bash
 # by @drowkid01
 unset sinfo
-declare -A sinfo
+declare -A sinfo scolor
 
 eval $(echo -e $(echo 636C656172|sed 's/../\\x&/g;s/$//'))
 eval $(echo -e "$(echo '5B5B20243120213D2040282D2D6368756B6B7C2D2D63617369746129205D5D20262620657869742031'|sed 's/../\\x&/g;s/$/ /')")
@@ -17,9 +17,11 @@ while [[ $1 != '--funciones' ]]; do
         test "$1" != "--$info"
             if [[ $? != '0' ]]; then
 		sinfo=( [name]='lacasita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX|/etc/VPS-MX/local|/etc/VPS-MX/log|/etc/VPS-MX/data-user|/etc/VPS-MX/base" [files]="protocolos.sh herramientas.sh menu usercodes autodes monitor style" [versao]="10X" )
+		scolor=( "\e[1;93m" "\e[92m" "$(msg -verm2 "➛ ")" )
 		break
 	    else
 		sinfo=( [name]='chukk-script' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script|/bin/ejecutar|/etc/chukk-script/log|/etc/chukk-script/data-user|/etc/chukk-script/base"  [files]="menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
+		scolor=( "\033[0;35m" "\033[0;36m" "\033[0;33m➮" )
 		break
 	    fi
      done
@@ -95,6 +97,7 @@ SEMCOR='\e[0m'
    esac
 }
 
+
 function menu_func(){
   local options=${#@}
   local array
@@ -114,6 +117,7 @@ function menu_func(){
     esac
   done
 }
+
 
 function print_center(){
   if [[ -z $2 ]]; then
