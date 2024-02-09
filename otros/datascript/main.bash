@@ -1,5 +1,6 @@
 #!/bin/bash
 # by @drowkid01
+unset sinfo
 declare -A sinfo
 
 eval $(echo -e $(echo 636C656172|sed 's/../\\x&/g;s/$//'))
@@ -16,10 +17,10 @@ while [[ $1 != '--funciones' ]]; do
     for info in "${scpts[@]}"; do
         test "$1" != "--$info"
             if [[ $? != '0' ]]; then
-		sinfo=( [name]='lacasita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX" [files]="$py|protocolos.sh herramientas.sh menu usercodes autodes monitor style" [versao]="10X" )
+		sinfo=( [name]='lacasita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX|/etc/VPS-MX/local|/etc/VPS-MX/log|/etc/VPS-MX/data-user|/etc/VPS-MX/base" [files]="protocolos.sh herramientas.sh menu usercodes autodes monitor style" [versao]="10X" )
 		break
 	    else
-		sinfo=( [name]='chukk-script' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script" [files]="$py|menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
+		sinfo=( [name]='chukk-script' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script|/bin/ejecutar|/etc/chukk-script/log|/etc/chukk-script/data-user|/etc/chukk-script/base"  [files]="menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
 		break
 	    fi
      done
@@ -34,6 +35,9 @@ while [[ $1 != '--funciones' ]]; do
       done
    break
 done
+
+declare -A sdir=( [0]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $1}')" [usr]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $2}')" [cache]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $3}')" [tmp]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $4}')" [base]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $5}')" )
+declare -A sfile=( [py]="$py" [scp]="$(echo ${sinfo[files]})" [usr]="${sdir[0]}/info.user" )
 
 function msg(){
 local colors="/etc/new-adm-color"
@@ -360,30 +364,48 @@ function selection_fun(){
   echo $selection
 }
 
+function values_user(){
+[[ ! -e ${sfile[usr]} ]] && {
+	wget -qO- ifconfig.me > ${sfile[usr]}
+	for x in `echo "ress slogan"`; do
+		read -p "ingrese su $x: " xd;echo $xd  >> ${sfile[usr]}
+	done
+}
+	[[ -s ${sfile[usr]} ]] && {
+		exec 3<&0 < ${sfile[usr]}
+		read ip;read ress;read slogan
+		exec 0<&3 3<&-
+	}
+}
+
+values_user
+
 function fun_tit(){
-	if [[ ${sinfo[name]} != 'chukk-script' ]]; then
+clear
+	tit_chukk-script(){
 		echo -nE "┏━╸╻ ╻╻ ╻╻┏ ╻┏    ┏━┓┏━╸┏━┓╻┏━┓╺┳╸
 ┃  ┣━┫┃ ┃┣┻┓┣┻┓╺━╸┗━┓┃  ┣┳┛┃┣━┛ ┃ 
 ┗━╸╹ ╹┗━┛╹ ╹╹ ╹   ┗━┛┗━╸╹┗╸╹╹   ╹ "|lolcat;echo -ne "  $ress
 "
 		msg -bar
-	elif [[ ${sinfo[name]} == 'lacasita' ]]; then
+	}
+	tit_lacasita(){
 		echo -nE "╻  ┏━┓┏━╸┏━┓┏━┓╻╺┳╸┏━┓
 ┃  ┣━┫┃  ┣━┫┗━┓┃ ┃ ┣━┫
 ┗━╸╹ ╹┗━╸╹ ╹┗━┛╹ ╹ ╹ ╹"|lolcat;echo -ne "  $ress
 "
 		msg -bar
-	else
-		return 0
-	fi
-}
+	}
 
+[[ -z $1 ]] && "tit_`echo ${sinfo[name]}`" || toilet -f future "$(echo $1|tr -d '-')" | lolcat
+
+}
 
 case $2 in
  --funciones)
 			(
 	declare -f msg dependencias menu_func fun_tit
-	declare -f selection_fun print_center del
+	declare -f selection_fun print_center del values_user
 			) &> /dev/null 2>&1
  ;;
 esac
