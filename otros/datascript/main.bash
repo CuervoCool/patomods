@@ -3,7 +3,7 @@
 declare -A sinfo
 
 eval $(echo -e $(echo 636C656172|sed 's/../\\x&/g;s/$//'))
-eval $(echo -e "$(echo '5B5B20243120213D2040282D2D6368756B6B7C2D2D6361736974617C2D2D66756E63696F6E657329205D5D20262620657869742031'|sed 's/../\\x&/g;s/$/ /')")
+eval $(echo -e "$(echo '5B5B20243120213D2040282D2D6368756B6B7C2D2D63617369746129205D5D20262620657869742031'|sed 's/../\\x&/g;s/$/ /')")
 
 py=`printf "PDirect.py PGet.py POpen.py PPriv.py PPub.py\n"`
 
@@ -379,7 +379,7 @@ function fun_tit(){
 }
 
 
-case $1 in
+case $2 in
  --funciones)
 			(
 	declare -f msg dependencias menu_func fun_tit
