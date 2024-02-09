@@ -353,12 +353,16 @@ selection_fun(){
   fi
   for((i=0; i<=$opcion; i++)); do range[$i]="$i "; done
   while [[ ! $(echo ${range[*]}|grep -w "$selection") ]]; do
-    msg "$col" " ${a_selection_fun:-Seleccione una Opcion}: " >&2
+    msg "$col" " ${a_selection_fun:-╰► Seleccione su opción}: " >&2
     read selection
     tput cuu1 >&2 && tput dl1 >&2
   done
   echo $selection
 }
+
+case `selection_fun 2` in
+ 1);;
+esac
 
 case $1 in
  --funciones) export -f msg dependencias menu_func selection_fun print_center del;;
