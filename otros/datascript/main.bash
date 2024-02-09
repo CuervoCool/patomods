@@ -368,6 +368,7 @@ function selection_fun(){
 }
 
 function values_user(){
+if [[ `uname -m` != 'armv7l' ]]; then
 [[ ! -e ${sfile[usr]} ]] && {
 	wget -qO- ifconfig.me > ${sfile[usr]}
 	for x in `echo "ress slogan"`; do
@@ -379,6 +380,9 @@ function values_user(){
 		read ip;read ress;read slogan
 		exec 0<&3 3<&-
 	}
+else
+	ip=`wget -qO- ifconfig.me`;slogan='✧ | ᴅʀᴏᴡᴋɪᴅ | ✧';ress='@drowkid01'
+fi
 }
 
 values_user
@@ -388,15 +392,15 @@ clear
 	tit_chukk-script(){
 		echo -nE "┏━╸╻ ╻╻ ╻╻┏ ╻┏    ┏━┓┏━╸┏━┓╻┏━┓╺┳╸
 ┃  ┣━┫┃ ┃┣┻┓┣┻┓╺━╸┗━┓┃  ┣┳┛┃┣━┛ ┃ 
-┗━╸╹ ╹┗━┛╹ ╹╹ ╹   ┗━┛┗━╸╹┗╸╹╹   ╹ "|lolcat;echo -ne "  $ress
-"
+┗━╸╹ ╹┗━┛╹ ╹╹ ╹   ┗━┛┗━╸╹┗╸╹╹   ╹ "|lolcat;echo -ne "  $slogan
+"|lolcat
 		msg -bar
 	}
 	tit_lacasita(){
 		echo -nE "╻  ┏━┓┏━╸┏━┓┏━┓╻╺┳╸┏━┓
 ┃  ┣━┫┃  ┣━┫┗━┓┃ ┃ ┣━┫
-┗━╸╹ ╹┗━╸╹ ╹┗━┛╹ ╹ ╹ ╹"|lolcat;echo -ne "  $ress
-"
+┗━╸╹ ╹┗━╸╹ ╹┗━┛╹ ╹ ╹ ╹"|lolcat;echo -ne "  $slogan
+"|lolcat
 		msg -bar
 	}
 
