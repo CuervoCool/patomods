@@ -20,7 +20,3 @@ while :; do
      done
 break
 done
-
-echo -e "${sinfo[@]}"
-
-
