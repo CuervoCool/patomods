@@ -362,9 +362,9 @@ function selection_fun(){
 
 case $1 in
  --funciones)
-   for funcion in `echo 'msg dependencias menu_func selection_fun print_center del'`; do
-	unset $funcion
-	declare -g $funcion
-   done
-;;
+			(
+	declare -f msg dependencias menu_func
+	declare -f selection_fun print_center del
+			) &> /dev/null 2>&1
+ ;;
 esac
