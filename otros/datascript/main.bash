@@ -10,7 +10,6 @@ py=`printf "PDirect.py PGet.py POpen.py PPriv.py PPub.py\n"`
 
 scode=( "script-lacasitamxd" "chukk-script" )
 scpts=(casita chukk)
-
 file=( [script]="${dir:=.}/info.script" )
 
 while [[ $1 != '--funciones' ]]; do
@@ -24,7 +23,7 @@ while [[ $1 != '--funciones' ]]; do
 		break
 	    fi
      done
-break
+  break
 done
 
 while [[ $1 != '--funciones' ]]; do
@@ -408,4 +407,13 @@ case $2 in
 	declare -f selection_fun print_center del values_user
 			) &> /dev/null 2>&1
  ;;
+ --limpiar-home)
+		/bin/cp /etc/skel/.bashrc ~/
+	/bin/cp /etc/skel/.bashrc /etc/bash.bashrc
+		msg -bar
+		print_center -verd "[✓] BANNER REMOVIDO DE $HOME [✓]"
+		msg -bar
+		ent
+ ;;
 esac
+
