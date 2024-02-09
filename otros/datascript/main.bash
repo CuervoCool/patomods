@@ -35,7 +35,6 @@ while [[ $1 != '--funciones' ]]; do
    break
 done
 
-
 msg(){
 local colors="/etc/new-adm-color"
 if [[ ! -e $colors ]]; then
@@ -110,6 +109,35 @@ menu_func(){
         ;;
       *) echo -e "${cor[3]} ${array[@]}";;
     esac
+  done
+}
+
+print_center(){
+  if [[ -z $2 ]]; then
+    text="$1"
+  else
+    col="$1"
+    text="$2"
+  fi
+
+  while read line; do
+    unset space
+    x=$(( ( 54 - ${#line}) / 2))
+    for (( i = 0; i < $x; i++ )); do
+      space+=' '
+    done
+    space+="$line"
+    if [[ -z $2 ]]; then
+      msg -azu "$space"
+    else
+      msg "$col" "$space"
+    fi
+  done <<< $(echo -e "$text")
+}
+
+del(){
+  for (( i = 0; i < $1; i++ )); do
+    tput cuu1 && tput dl1
   done
 }
 
@@ -313,7 +341,25 @@ fi
 clear
 }
 
+selection_fun(){
+  local selection="null"
+  local range
+  if [[ -z $2 ]]; then
+    opcion=$1
+    col="-nazu"
+  else
+    opcion=$2
+    col=$1
+  fi
+  for((i=0; i<=$opcion; i++)); do range[$i]="$i "; done
+  while [[ ! $(echo ${range[*]}|grep -w "$selection") ]]; do
+    msg "$col" " ${a_selection_fun:-Seleccione una Opcion}: " >&2
+    read selection
+    tput cuu1 >&2 && tput dl1 >&2
+  done
+  echo $selection
+}
 
 case $1 in
- --funciones) export -f msg dependencias menu_func selection_fun ;;
+ --funciones) export -f msg dependencias menu_func selection_fun print_center del;;
 esac
