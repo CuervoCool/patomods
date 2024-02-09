@@ -18,11 +18,11 @@ while [[ $1 != '--funciones' ]]; do
         test "$1" != "--$info"
             if [[ $? != '0' ]]; then
 		sinfo=( [name]='lacasita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX|/etc/VPS-MX/local|/etc/VPS-MX/log|/etc/VPS-MX/data-user|/etc/VPS-MX/base" [files]="protocolos.sh herramientas.sh menu usercodes autodes monitor style" [versao]="10X" )
-		scolor=( [0]='\e[1;93m' [1]='\e[92m' [2]="\e[91m➛\e[1;97m" )
+		scolor=( [0]='\e[1;93m' [1]='\e[92m' [2]="\e[91m➛\e[1;97m" [3]='\e[1;91m' )
 		break
 	    else
 		sinfo=( [name]='chukk-script' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script|/bin/ejecutar|/etc/chukk-script/log|/etc/chukk-script/data-user|/etc/chukk-script/base"  [files]="menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
-		scolor=( [0]='\033[0;35m' [1]='\033[0;36m' [2]='\033[0;33m➮\033[1;97m' )
+		scolor=( [0]='\033[0;35m' [1]='\033[0;36m' [2]='\033[0;33m➮\033[1;97m' [3]='\e[93m' )
 		break
 	    fi
      done
@@ -75,7 +75,7 @@ NEGRITO='\e[1m'
 SEMCOR='\e[0m'
  case $1 in
   -ne) cor="${COLOR[1]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
-  -ama) cor="${COLOR[3]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -ama) cor="${scolor[3]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
   -verm) cor="${COLOR[3]}${NEGRITO}[!] ${COLOR[1]}" && echo -e "${cor}${2}${SEMCOR}";;
   -verm2) cor="${COLOR[1]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
   -aqua) cor="${COLOR[8]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
