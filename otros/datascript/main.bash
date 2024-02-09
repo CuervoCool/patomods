@@ -92,6 +92,7 @@ SEMCOR='\e[0m'
 }
 
 dependencias(){
+# code by: @kalix1
 clear
 function printTitle
 {
