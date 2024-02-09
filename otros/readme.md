@@ -12,9 +12,8 @@ unzip $HOME/fonts.zip --directory /usr/share/figlet
 rm $HOME/fonts.zip
 ```
 
-# versión de cada mod:
-
-source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/patomods/main/otros/versao/versao.bash) --[chukk/casita]
+# datascript:
+información general de cada script.
 
 # bots:
  complementos y recursos de los bots
