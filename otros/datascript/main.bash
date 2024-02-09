@@ -39,6 +39,7 @@ done
 
 declare -A sdir=( [0]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $1}')" [usr]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $2}')" [cache]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $3}')" [tmp]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $4}')" [base]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $5}')" )
 declare -A sfile=( [py]="$py" [scp]="$(echo ${sinfo[files]})" [usr]="${sdir[0]}/info.user" )
+declare -A col=( [a1]="${scol[0]}" [a2]="${scol[1]}" [a3]="${scol[0]}" [a4]="${scol[2]}" )
 
 function msg(){
 local colors="/etc/new-adm-color"
@@ -96,7 +97,6 @@ SEMCOR='\e[0m'
   -br) ccor="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && echo -e "${ccor}";;
    esac
 }
-
 
 function menu_func(){
   local options=${#@}
@@ -403,6 +403,7 @@ clear
 [[ -z $1 ]] && "tit_`echo ${sinfo[name]}`" || toilet -f future "$(echo $1|tr -d '-')" | lolcat
 
 }
+
 
 case $2 in
  --funciones)
