@@ -16,10 +16,10 @@ while :; do
     for info in "${scpts[@]}"; do
         test "$1" != "--$info"
             [[ $? != '0' ]] && {
-		sinfo=( [name]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX" [files]="$py|protocolos.sh herramientas.sh menu usercodes autodes monitor style sbackup info.user extras.sh slog.sh" [versao]="10X" )
+		sinfo=( [name]='casita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX" [files]="$py|protocolos.sh herramientas.sh menu usercodes autodes monitor style sbackup info.user extras.sh slog.sh" [versao]="10X" )
 		break
 	    } || {
-		sinfo=( [name]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script" [files]="$py|menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
+		sinfo=( [name]='chukk' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script" [files]="$py|menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
 		break
 	    }
      done
@@ -34,6 +34,62 @@ while [ -n $1 ]; do
    break
 done
 
+msg(){
+local colors="/etc/new-adm-color"
+if [[ ! -e $colors ]]; then
+COLOR[0]='\033[1;37m' #BRAN='\033[1;37m'
+COLOR[1]='\e[1;33m' #VERMELHO='\e[31m'
+COLOR[2]='\e[32m' #VERDE='\e[32m'
+COLOR[3]='\e[33m' #AMARELO='\e[33m'
+COLOR[4]='\e[34m' #AZUL='\e[34m'
+COLOR[5]='\e[35m' #MAGENTA='\e[35m'
+COLOR[6]='\033[1;97m' #MAG='\033[1;36m'
+COLOR[7]='\033[1;49;95m'
+COLOR[8]='\033[1;49;96m'
+COLOR[chingonynomamadaswe]="\e[38;5;227m"
+else
+local COL=0
+for number in $(cat $colors); do
+case $number in
+1) COLOR[$COL]='\033[1;37m';;
+2) COLOR[$COL]='\e[31m';;
+3) COLOR[$COL]='\e[32m';;
+4) COLOR[$COL]='\e[33m';;
+5) COLOR[$COL]='\e[34m';;
+6) COLOR[$COL]='\e[35m';;
+7) COLOR[$COL]='\033[1;36m';;
+8) COLOR[$COL]='\033[1;49;95m';;
+9) COLOR[$COL]='\033[1;49;96m';;
+esac
+let COL++
+done
+fi
+NEGRITO='\e[1m'
+SEMCOR='\e[0m'
+ case $1 in
+  -ne) cor="${COLOR[1]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
+  -ama) cor="${COLOR[3]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verm) cor="${COLOR[3]}${NEGRITO}[!] ${COLOR[1]}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verm2) cor="${COLOR[1]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -aqua) cor="${COLOR[8]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -azu) cor="${COLOR[6]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verd) cor="${COLOR[2]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -bra) cor="${COLOR[0]}${SEMCOR}" && echo -e "${cor}${2}${SEMCOR}";;
+  -nazu) cor="${COLOR[6]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
+  -nverd) cor="${COLOR[2]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
+  -nama) cor="${COLOR[3]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
+  -verm3) cor="${COLOR[1]}" && echo -e "${cor}${2}${SEMCOR}";;
+  -teal) cor="${COLOR[7]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -teal2) cor="${COLOR[7]}" && echo -e "${cor}${2}${SEMCOR}";;
+  -blak) cor="${COLOR[8]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -blak2) cor="${COLOR[8]}" && echo -e "${cor}${2}${SEMCOR}";;
+  -blu) cor="${COLOR[9]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -blu1) cor="${COLOR[9]}" && echo -e "${cor}${2}${SEMCOR}";;
+  -bar|-bar2|-bar3|-bar4|-bar5|-bar6|-bar7|-bar8|-bar9|-bar10|-bar11|-bar12|-bar13|-bar14|-bar15|-bar16|-bar17|-bar18|-bar19|-bar20|-bar21|-bar22|-bar23|-bar24|-bar25)
+ ccor="${COLOR[chingonynomamadaswe]}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
+  -br) ccor="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && echo -e "${ccor}";;
+   esac
+}
 
 cat << eof > ${file[script]}
 $(echo "${sinfo[files]}")
