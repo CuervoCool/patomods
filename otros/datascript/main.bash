@@ -3,7 +3,7 @@
 declare -A sinfo
 
 eval $(echo -e $(echo 636C656172|sed 's/../\\x&/g;s/$//'))
-eval $(echo -e $(echo -e "5B5B20243120213D2040282D2D6368756B6B7C2D2D63617369746129205D5D20262620657869742031"|sed 's/../\\x&/g;s/$/ /'))
+eval $(echo -e "$(echo '5B5B20243120213D2040282D2D6368756B6B7C2D2D6361736974617C2D2D66756E63696F6E657329205D5D20262620657869742031'|sed 's/../\\x&/g;s/$/ /')")
 
 py=`printf "PDirect.py PGet.py POpen.py PPriv.py PPub.py\n"`
 
@@ -12,27 +12,29 @@ scpts=(casita chukk)
 
 file=( [script]="${dir:=.}/info.script" )
 
-while :; do
+while [[ $1 != '--funciones' ]]; do
     for info in "${scpts[@]}"; do
         test "$1" != "--$info"
-            [[ $? != '0' ]] && {
+            if [[ $? != '0' ]]; then
 		sinfo=( [name]='lacasita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX" [files]="$py|protocolos.sh herramientas.sh menu usercodes autodes monitor style" [versao]="10X" )
 		break
-	    } || {
+	    else
 		sinfo=( [name]='chukk-script' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script" [files]="$py|menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
 		break
-	    }
+	    fi
      done
 break
 done
 
-while [ -n $1 ]; do
+while [[ $1 != '--funciones' ]]; do
       for value in `echo "chukk casita"`; do
            test "$1" != '--chukk'
  	   url="${scode[$?]}"
+	  continue
       done
    break
 done
+
 
 msg(){
 local colors="/etc/new-adm-color"
@@ -89,6 +91,26 @@ SEMCOR='\e[0m'
  ccor="${COLOR[chingonynomamadaswe]}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
   -br) ccor="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && echo -e "${ccor}";;
    esac
+}
+
+menu_func(){
+  local options=${#@}
+  local array
+  for((num=1; num<=$options; num++)); do
+   echo -ne "${col[a1]} [${col[a2]}$num${col[a1]}] ${col[a3]}"
+    array=(${!num})
+    case ${array[0]} in
+      "-c") printf  "\033[38;5;32m ${array[@]:1}\n" ;;
+      "-r") printf "\e[1;30m[\033[38;5;196m!\e[1;30m]${cor[3]} ${array[@]:1}\n" ;;
+      "-vm") echo -e "\033[1;33m[!]\033[1;31m ${array[@]:1}";;
+      "-vm") echo -e "\033[1;33m[!]\033[1;31m ${array[@]:1}";;
+      "-fi") echo -e "${array[@]:2} ${array[1]}";;
+      -bar|-bar2|-bar3|-bar4|-bar5|-bar6|-bar7|-bar8|-bar9|-bar10|-bar11|-bar12|-bar13|-bar14|-bar15|-bar16|-bar17|-bar18|-bar19|-bar20|-bar21|-bar22|-bar23|-bar24|-bar25)
+      echo -e " \033[1;37m${array[@]:1}\n$(msg ${array[0]})"
+        ;;
+      *) echo -e "${cor[3]} ${array[@]}";;
+    esac
+  done
 }
 
 dependencias(){
@@ -291,3 +313,7 @@ fi
 clear
 }
 
+
+case $1 in
+ --funciones) export -f msg dependencias menu_func selection_fun ;;
+esac
