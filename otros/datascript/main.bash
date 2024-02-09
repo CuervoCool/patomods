@@ -1,5 +1,5 @@
 #!/bin/bash
-# by @drowkid01
+# código creado por: @drowkid01
 unset sinfo scolor
 declare -A sinfo
 declare -A scolor
