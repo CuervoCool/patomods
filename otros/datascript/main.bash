@@ -228,9 +228,6 @@ service apache2 restart > /dev/null 2>&1
  apt-get clean &>/dev/null
 msg -bar
 clear
-rm -rf /usr/bin/vpsmxup
-rm -rf lista-arq
-rm -rf LACASITA.sh
 
 printTitle "Limpieza de paquetes (eliminación automática de paquetes no utilizados)"
 apt autoremove -y &>/dev/null
