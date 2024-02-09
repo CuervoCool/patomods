@@ -239,18 +239,7 @@ apt autoremove -y &>/dev/null
 apt-get install net-tools -y
 printTitle "Versión actual"
 lsb_release -d
-idfix64_86 () {
-clear
-clear
-msg -bar2
-#msg -ama "     [ VPS - MX - SCRIPT \033[1;97m MOD\033[1;33m ]"
-msg -bar2
-echo ""
-echo -e "\e[91m   INSTALACION SEMI MANUAL DE PAQUETES "
-echo -e "\e[91m(En caso de pedir confirmacion escoja: #y#) \e[0m"
-echo ""
-sleep 7s
-apt-get update; apt-get upgrade -y
+
 apt-get install curl -y
 apt-get install lsof -y
 apt-get install sudo -y
@@ -266,8 +255,6 @@ clear
 clear
 clear
 msg -bar2
-#msg -ama "     [ VPS - MX - SCRIPT \033[1;97m  MOD   \033[1;33m ]"
-msg -bar2
 echo ""
 echo -e "\e[91mESCOJER PRIMERO #All locales# Y LUEGO #en_US.UTF-8# \e[0m"
 echo ""
@@ -279,22 +266,7 @@ sleep 7s
    && locale-gen en_US.UTF-8\
    && sudo apt-get -y install language-pack-en-base\
    && sudo dpkg-reconfigure locales
-clear
-}
-clear
-clear
-#msg -bar2
-#msg -ama "     [ VPS - MX - SCRIPT \033[1;97m  MOD \033[1;33m ]"
-#msg -bar2
-#echo -e "\033[1;97m  ¿PRECENTO ALGUN ERROR ALGUN PAQUETE ANTERIOR?"
-#msg -bar2
-#echo -e "\033[1;32m 1- Escoja:(N) No. Para Instalacion Normal"
-#echo -e "\033[1;31m 2- Escoja:(S) Si. Saltaron errores."
-#msg -bar2
-#echo -e "\033[1;39m Al preciona enter continuara la instalacion Normal"
-#msg -bar2
-#read -p " [ S | N ]: " idfix64_86
-#[[ "$idfix64_86" = "s" || "$idfix64_86" = "S" ]] && idfix64_86
+
 fi
 clear
 }
