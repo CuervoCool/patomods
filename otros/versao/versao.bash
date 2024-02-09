@@ -1,4 +1,5 @@
 #!/bin/bash
+# versión de cada mod.
 
 scode=( "10X" "v2.0" )
 
