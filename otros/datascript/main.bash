@@ -36,7 +36,7 @@ done
 
 
 cat << eof > ${file[script]}
-$(echo ${sinfo[files]})
+$(echo "${sinfo[files]}")
 $(echo "${sinfo[name]}")
 $(echo "${sinfo[ruta]}")
 $(echo "${url}")
