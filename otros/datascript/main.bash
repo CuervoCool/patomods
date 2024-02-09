@@ -1,7 +1,8 @@
 #!/bin/bash
 # by @drowkid01
-unset sinfo
-declare -A sinfo scolor
+unset sinfo scolor
+declare -A sinfo
+declare -A scolor
 
 eval $(echo -e $(echo 636C656172|sed 's/../\\x&/g;s/$//'))
 eval $(echo -e "$(echo '5B5B20243120213D2040282D2D6368756B6B7C2D2D63617369746129205D5D20262620657869742031'|sed 's/../\\x&/g;s/$/ /')")
@@ -17,11 +18,11 @@ while [[ $1 != '--funciones' ]]; do
         test "$1" != "--$info"
             if [[ $? != '0' ]]; then
 		sinfo=( [name]='lacasita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX|/etc/VPS-MX/local|/etc/VPS-MX/log|/etc/VPS-MX/data-user|/etc/VPS-MX/base" [files]="protocolos.sh herramientas.sh menu usercodes autodes monitor style" [versao]="10X" )
-		scolor=( "\e[1;93m" "\e[92m" "$(msg -verm2 "➛ ")" )
+		scolor=( [0]='\e[1;93m' [1]='\e[92m' [2]="\e[91m➛\e[1;97m" )
 		break
 	    else
 		sinfo=( [name]='chukk-script' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script|/bin/ejecutar|/etc/chukk-script/log|/etc/chukk-script/data-user|/etc/chukk-script/base"  [files]="menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
-		scolor=( "\033[0;35m" "\033[0;36m" "\033[0;33m➮" )
+		scolor=( [0]='\033[0;35m' [1]='\033[0;36m' [2]='\033[0;33m➮\033[1;97m' )
 		break
 	    fi
      done
@@ -39,7 +40,6 @@ done
 
 declare -A sdir=( [0]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $1}')" [usr]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $2}')" [cache]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $3}')" [tmp]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $4}')" [base]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $5}')" )
 declare -A sfile=( [py]="$py" [scp]="$(echo ${sinfo[files]})" [usr]="${sdir[0]}/info.user" )
-declare -A col=( [a1]="${scol[0]}" [a2]="${scol[1]}" [a3]="${scol[0]}" [a4]="${scol[2]}" )
 
 function msg(){
 local colors="/etc/new-adm-color"
@@ -102,7 +102,7 @@ function menu_func(){
   local options=${#@}
   local array
   for((num=1; num<=$options; num++)); do
-   echo -ne "${col[a1]} [${col[a2]}$num${col[a1]}] ${col[a3]}"
+   echo -ne "${scolor[0]} [${scolor[1]}$num${scolor[0]}] ${scolor[2]}"
     array=(${!num})
     case ${array[0]} in
       "-c") printf  "\033[38;5;32m ${array[@]:1}\n" ;;
