@@ -360,10 +360,29 @@ function selection_fun(){
   echo $selection
 }
 
+function fun_tit(){
+	if [[ ${sinfo[name]} != 'chukk-script' ]]; then
+		echo -nE "┏━╸╻ ╻╻ ╻╻┏ ╻┏    ┏━┓┏━╸┏━┓╻┏━┓╺┳╸
+┃  ┣━┫┃ ┃┣┻┓┣┻┓╺━╸┗━┓┃  ┣┳┛┃┣━┛ ┃ 
+┗━╸╹ ╹┗━┛╹ ╹╹ ╹   ┗━┛┗━╸╹┗╸╹╹   ╹ "|lolcat;echo -ne "  $ress
+"
+		msg -bar
+	elif [[ ${sinfo[name]} == 'lacasita' ]]; then
+		echo -nE "╻  ┏━┓┏━╸┏━┓┏━┓╻╺┳╸┏━┓
+┃  ┣━┫┃  ┣━┫┗━┓┃ ┃ ┣━┫
+┗━╸╹ ╹┗━╸╹ ╹┗━┛╹ ╹ ╹ ╹"|lolcat;echo -ne "  $ress
+"
+		msg -bar
+	else
+		return 0
+	fi
+}
+
+
 case $1 in
  --funciones)
 			(
-	declare -f msg dependencias menu_func
+	declare -f msg dependencias menu_func fun_tit
 	declare -f selection_fun print_center del
 			) &> /dev/null 2>&1
  ;;
