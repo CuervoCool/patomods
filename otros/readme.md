@@ -12,16 +12,9 @@ unzip $HOME/fonts.zip --directory /usr/share/figlet
 rm $HOME/fonts.zip
 ```
 
-# versiones.
-chukk-script
+# versión de cada mod:
 
-```
-source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/patomods/main/otros/versao/info.script) --chukk-mod
-```
+source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/patomods/main/otros/versao/versao.bash) --[chukk/casita]
 
-casitamod
-```
-source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/patomods/main/otros/versao/info.script) --casita-mod
-```
 
 # by @drowkid01
