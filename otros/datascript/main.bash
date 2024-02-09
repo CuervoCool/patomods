@@ -360,10 +360,6 @@ selection_fun(){
   echo $selection
 }
 
-case `selection_fun 2` in
- 1);;
-esac
-
 case $1 in
  --funciones) export -f msg dependencias menu_func selection_fun print_center del;;
 esac
