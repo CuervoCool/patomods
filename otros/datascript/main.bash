@@ -17,10 +17,10 @@ while :; do
         test "$1" != "--$info"
             [[ $? != '0' ]] && {
 		sinfo=( [name]='lacasita' [tit]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX" [files]="$py|protocolos.sh herramientas.sh menu usercodes autodes monitor style sbackup info.user extras.sh slog.sh" [versao]="10X" )
-		break
+		continue
 	    } || {
 		sinfo=( [name]='chukk-script' [tit]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script" [files]="$py|menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
-		break
+		continue
 	    }
      done
 break
