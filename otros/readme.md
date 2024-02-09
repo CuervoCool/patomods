@@ -18,7 +18,7 @@ source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/patomods/main/ot
 
 # bots:
  complementos y recursos de los bots
-## botssh-tg:
+<h3>botssh-tg:</h3>
 
 
 # by @drowkid01
