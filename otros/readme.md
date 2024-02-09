@@ -1,4 +1,3 @@
 # fonts
-```
-https://raw.githubusercontent.com/CuervoCool/patomods/main/otros/fonts/
+```apt-get install figlet toilet -y &> /dev/null;apt-get update && apt-get upgrade -y
 ```
