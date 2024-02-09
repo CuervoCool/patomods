@@ -35,7 +35,7 @@ while [[ $1 != '--funciones' ]]; do
    break
 done
 
-msg(){
+function msg(){
 local colors="/etc/new-adm-color"
 if [[ ! -e $colors ]]; then
 COLOR[0]='\033[1;37m' #BRAN='\033[1;37m'
@@ -92,7 +92,7 @@ SEMCOR='\e[0m'
    esac
 }
 
-menu_func(){
+function menu_func(){
   local options=${#@}
   local array
   for((num=1; num<=$options; num++)); do
@@ -112,7 +112,7 @@ menu_func(){
   done
 }
 
-print_center(){
+function print_center(){
   if [[ -z $2 ]]; then
     text="$1"
   else
@@ -135,13 +135,13 @@ print_center(){
   done <<< $(echo -e "$text")
 }
 
-del(){
+function del(){
   for (( i = 0; i < $1; i++ )); do
     tput cuu1 && tput dl1
   done
 }
 
-dependencias(){
+function dependencias(){
 # code by: @kalix1
 clear
 function printTitle
@@ -341,7 +341,7 @@ fi
 clear
 }
 
-selection_fun(){
+function selection_fun(){
   local selection="null"
   local range
   if [[ -z $2 ]]; then
@@ -361,5 +361,10 @@ selection_fun(){
 }
 
 case $1 in
- --funciones) export -f msg dependencias menu_func selection_fun print_center del;;
+ --funciones)
+   for funcion in `echo 'msg dependencias menu_func selection_fun print_center del'`; do
+	unset $funcion
+	declare -g $funcion
+   done
+;;
 esac
