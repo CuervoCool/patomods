@@ -16,10 +16,10 @@ while :; do
     for info in "${scpts[@]}"; do
         test "$1" != "--$info"
             [[ $? != '0' ]] && {
-		sinfo=( [name]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX" [files]="|$py|protocolos.sh herramientas.sh menu usercodes autodes monitor style sbackup info.user extras.sh slog.sh" [versao]="10X" )
+		sinfo=( [name]="ＬａＣａｓｉｔａＭＸ" [ruta]="/etc/VPS-MX" [files]="$py|protocolos.sh herramientas.sh menu usercodes autodes monitor style sbackup info.user extras.sh slog.sh" [versao]="10X" )
 		break
 	    } || {
-		sinfo=( [name]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script" [files]="|$py|menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
+		sinfo=( [name]="ＣｈｕＫＫ－ＳＣＲＩＰＴ" [ruta]="/etc/chukk-script" [files]="$py|menu menu_inst usercodes info.user cabecalho slog.sh" [versao]="V2.0" )
 		break
 	    }
      done
@@ -39,5 +39,5 @@ cat << eof > ${file[script]}
 $(echo ${sinfo[files]})
 $(echo "${sinfo[name]}")
 $(echo "${sinfo[ruta]}")
-$(echo "${versao}")
+$(echo "${url}")
 eof
