@@ -174,7 +174,6 @@ clear
 apt-get install pv -y &> /dev/null
 [[ $(dpkg --get-selections|grep -w "pv"|head -1) ]] || apt-get install pv -y &>/dev/null
 apt-get install pv -y -qq --silent > /dev/null 2>&1
-os_system
 MI=$(wget -qO- ifconfig.me)
 msg -bar2
 if [[ -e /etc/instalpak ]]; then
