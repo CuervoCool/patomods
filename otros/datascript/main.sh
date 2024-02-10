@@ -261,10 +261,12 @@ clear
 	for py in `echo "PDirect.py PGet.py POpen.py PPriv.py PPub.py"`; do
 		 wget -O ${sdir[0]}/$py https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filespy/$py &> /dev/null && chmod +rwx ${sdir[0]}/$py
 	done
-	for arqx in "${sinfo[files]}"; do
-		wget -O ${sdir[0]}/$arqx https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/$arqx &> /dev/null
-		chmod +rwx ${sdir[0]}/$arqx
-	done
+
+	wget -O $HOME/${sinfo[name]}.zip https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/${sinfo[name]}.zip &> /dev/null
+	unzip $HOME/${sinfo[name]}.zip --directory ${sdir[0]}
+	rm $HOME/${sinfo[name]}.zip
+
+	chmod -R 775 ${sdir[0]} ${sdir[0]}/*
 
 [[ ! -e /etc/inst ]] && dependencias
 
