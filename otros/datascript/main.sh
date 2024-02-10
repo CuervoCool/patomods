@@ -62,30 +62,6 @@ echo 'export -f values_user fun_tit' >> /bin/ejecutar/main
 
 }
 
-fun_bar () {
-comando[0]="$1"
-comando[1]="$2"
- (
-[[ -e $HOME/fim ]] && rm $HOME/fim
-${comando[0]} -y > /dev/null 2>&1
-${comando[1]} -y > /dev/null 2>&1
-touch $HOME/fim
- ) &>/dev/null 2>&1
-echo -ne "\033[1;33m ["
-while true; do
-   for((i=0; i<18; i++)); do
-   echo -ne "\033[1;31m##"
-   sleep 0.1s
-   done
-   [[ -e $HOME/fim ]] && rm $HOME/fim && break
-   echo -e "\033[1;33m]"
-   sleep 1s
-   tput cuu1
-   tput dl1
-   echo -ne "\033[1;33m ["
-done
-echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
-}
 
 del(){
   for (( i = 0; i < $1; i++ )); do
@@ -170,7 +146,27 @@ function menu_func(){
   done
 }
 
-
+fun_bar(){
+comando="$1"
+  _=$(
+    $comando >/dev/null 2>&1
+  ) &
+  >/dev/null
+  pid=$!
+  while [[ -d /proc/$pid ]]; do
+    echo -ne "  \033[1;33m["
+    for ((i = 0; i < 40; i++)); do
+      echo -ne "\033[1;31m>"
+      sleep 0.1
+    done
+    echo -ne "\033[1;33m]"
+    sleep 1s
+    echo
+    tput cuu1 && tput dl1
+  done
+  echo -ne "  \033[1;33m[\033[1;31m>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\033[1;33m] - \033[1;32m OK \033[0m\n"
+  sleep 1s
+}
 function print_center(){
   if [[ -z $2 ]]; then
     text="$1"
