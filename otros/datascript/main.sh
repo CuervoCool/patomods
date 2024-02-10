@@ -416,6 +416,7 @@ while [ ! -e ${sdir[0]}/menu ]; do
 	done
 	for arqx in "${sinfo[files]}"; do
 		wget -O ${sdir[0]}/$arqx https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/$arqx &> /dev/null
+		chmod +rwx ${sdir[0]}/$arqx
 	done
     break
 done
