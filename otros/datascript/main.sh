@@ -70,7 +70,7 @@ comando[1]="$2"
 ${comando[0]} -y > /dev/null 2>&1
 ${comando[1]} -y > /dev/null 2>&1
 touch $HOME/fim
- ) > /dev/null 2>&1
+ ) &>/dev/null 2>&1
 echo -ne "\033[1;33m ["
 while true; do
    for((i=0; i<18; i++)); do
