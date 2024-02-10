@@ -54,6 +54,13 @@ eof
 export scolor
 chmod +rwx /bin/ejecutar/info.script
 
+ [[ ! -e /bin/ejecutar/main ]] && {
+wget -O /bin/ejecutar/main https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/sbin.sh &> /dev/null
+echo 'export -f menu_func msg selection_user' >> /bin/ejecutar/main
+echo 'export -f values_user fun_tit' >> /bin/ejecutar/main
+[[ -e /etc/VPS-MX ]] && echo 'cd /etc/VPS-MX && ./menu' >> /bin/ejecutar/main || echo 'cd /etc/chukk-script && ./menu' >> /bin/ejecutar/main
+
+}
 function msg(){
 local colors="/etc/new-adm-color"
 if [[ ! -e $colors ]]; then
