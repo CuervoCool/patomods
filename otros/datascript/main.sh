@@ -223,6 +223,7 @@ dpkg --configure -a >/dev/null 2>&1
   packages="zip unzip python python3 python3-pip openssl iptables lsof pv boxes at mlocate gawk bc jq npm nodejs socat net-tools cowsay figlet lolcat"
   for i in $packages; do
     paquete="$i"
+    msg -bar
     echo -e "\033[1;97m        INSTALANDO PAQUETE \e[93m >>> \e[36m $i"
     fun_bar "apt-get install $i -y"
   done
