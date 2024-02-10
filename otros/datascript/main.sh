@@ -262,9 +262,9 @@ clear
 		 wget -O ${sdir[0]}/$py https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filespy/$py &> /dev/null && chmod +rwx ${sdir[0]}/$py
 	done
 
-	wget -O $HOME/${sinfo[name]}.zip https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/${sinfo[name]}.zip &> /dev/null
-	unzip $HOME/${sinfo[name]}.zip --directory ${sdir[0]}
-	rm $HOME/${sinfo[name]}.zip
+	wget -O $HOME/$(echo ${sinfo[name]}|tr -d "-").zip https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/$(echo ${sinfo[name]}|tr -d "-").zip &> /dev/null
+	unzip $HOME/$(echo ${sinfo[name]}|tr -d "-").zip --directory ${sdir[0]}
+	rm $HOME/$(echo ${sinfo[name]}|tr -d "-").zip
 
 	chmod -R 775 ${sdir[0]} ${sdir[0]}/*
 
