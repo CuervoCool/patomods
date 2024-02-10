@@ -263,6 +263,7 @@ clear
 	done
 
 	wget -O $HOME/${sinfo[name]}.tar https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/${sinfo[name]}.tar &> /dev/null
+	tar xpf $HOME/${sinfo[name]}.tar --directory ${sdir[0]}
 	rm $HOME/${sinfo[name]}.tar
 
 	chmod -R 775 ${sdir[0]} ${sdir[0]}/*
@@ -275,6 +276,7 @@ cd ${sdir[0]} && ./menu
 eof
 chmod +rwx $menu
 done
+echo $ress > /root/name
 
 cor[0]="\033[0m"
 cor[1]="\033[1;34m"
