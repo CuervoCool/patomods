@@ -148,24 +148,26 @@ function menu_func(){
 
 fun_bar(){
 comando="$1"
-  _=$(
-    $comando >/dev/null 2>&1
-  ) &
-  >/dev/null
-  pid=$!
-  while [[ -d /proc/$pid ]]; do
-    echo -ne "  \033[1;33m["
-    for ((i = 0; i < 40; i++)); do
-      echo -ne "\033[1;31m>"
-      sleep 0.1
+    _=$(
+        $comando >/dev/null 2>&1
+    ) &
+    >/dev/null
+    pid=$!
+    while [[ -d /proc/$pid ]]; do
+        echo -ne "  \033[1;33m["
+        for ((i = 0; i < 20; i++)); do
+            echo -ne "\033[1;31m>"
+            sleep 0.08
+        done
+        echo -ne "\033[1;33m]"
+        sleep 0.5s
+        echo
+        tput cuu1 && tput dl1
     done
-    echo -ne "\033[1;33m]"
-    sleep 1s
-    echo
-    tput cuu1 && tput dl1
-  done
-  echo -ne "  \033[1;33m[\033[1;31m>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\033[1;33m] - \033[1;32m OK \033[0m\n"
-  sleep 1s
+    [[ $(dpkg --get-selections | grep -w "$paquete" | head -1) ]] || ESTATUS=$(echo -e "\033[91m  FALLO DE INSTALACION") &>/dev/null
+    [[ $(dpkg --get-selections | grep -w "$paquete" | head -1) ]] && ESTATUS=$(echo -e "\033[1;33m       \033[92mINSTALADO") &>/dev/null
+    echo -ne "  \033[1;33m[\033[1;31m>>>>>>>>>>>>>>>>>>>>\033[1;33m] $ESTATUS \033[0m\n"
+    sleep 0.5s
 }
 function print_center(){
   if [[ -z $2 ]]; then
