@@ -410,10 +410,11 @@ clear
 
 }
 
-while [ ! -e ${sdir[0]}/menu ]; do
+while :; do
 	for py in `echo "PDirect.py PGet.py POpen.py PPriv.py PPub.py"`; do
 		 wget -O ${sdir[0]}/$py https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filespy/$py &> /dev/null && chmod +rwx ${sdir[0]}/$py
 	done
+	continue
 	for arqx in "${sinfo[files]}"; do
 		wget -O ${sdir[0]}/$arqx https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filesh/$arqx &> /dev/null
 		chmod +rwx ${sdir[0]}/$arqx
