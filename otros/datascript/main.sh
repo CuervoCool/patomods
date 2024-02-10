@@ -177,6 +177,7 @@ apt-get install pv -y -qq --silent > /dev/null 2>&1
 MI=$(wget -qO- ifconfig.me)
 msg -bar2
 if [[ -e /etc/instalpak ]]; then
+touch /etc/instalpak
 dpkg --configure -a > /dev/null 2>&1 && echo -e "\033[93m    ❯\e[97m INTENTANDO RECONFIGURAR  " | pv -qL 40
 sudo apt-get install lolcat -y &>/dev/null
 sudo gem install lolcat -y &>/dev/null
