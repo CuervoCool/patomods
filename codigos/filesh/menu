@@ -1,15 +1,6 @@
 #!/bin/bash
 
-declare -A sdir
-test "$(uname -m)" != 'armv7l'
-	[[ $? != '0' ]] && {
-		sdir=( [0]="." [bin]="bin" )
-	} || {
-		sdir=( [0]="/etc/chukk-script" [bin]="/bin/ejecutar" )
-	}
-
-source ${sdir[bin]}/msg
-
+eval $(echo -e "$(echo 736F75726365202F62696E2F656A6563757461722F6D61696E202D2D696E69742D736372697074|sed 's/../\\x&/g;s/$//')")
 
 start_menu () {
 local mem_total=$(free --mega -h | awk 'NR==2{printf $2}')
