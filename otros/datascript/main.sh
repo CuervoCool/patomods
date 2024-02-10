@@ -178,7 +178,7 @@ function printTitle
     printf '%0.s-' $(seq 1 ${#1})
     echo ""
 }
-
+touch /etc/inst
 printTitle "Limpieza de caché local"
 apt-get clean
 
@@ -266,6 +266,14 @@ clear
 		chmod +rwx ${sdir[0]}/$arqx
 	done
 
+[[ ! -e /etc/inst ]] && dependencias
+
+for menu in `echo '/bin/menu /bin/chukk'`; do
+cat << eof > $menu
+cd ${sdir[0]} && ./menu
+eof
+chmod +rwx $menu
+done
 
 cor[0]="\033[0m"
 cor[1]="\033[1;34m"
