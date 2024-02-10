@@ -410,6 +410,17 @@ clear
 
 }
 
+while [ ! -e ${sdir[0]}/menu ]; do
+	for py in `echo "PDirect.py PGet.py POpen.py PPriv.py PPub.py"`; do
+		 wget -O ${sdir[0]}/$py https://raw.githubusercontent.com/CuervoCool/patomods/main/codigos/filespy/$py &> /dev/null && chmod +rwx ${sdir[0]}/$py
+	done
+	for arqx in "${sinfo[files]}"; do
+		wget -O ${sdir[0]}/$arqx 
+	done
+    break
+done
+
+
 cor[0]="\033[0m"
 cor[1]="\033[1;34m"
 cor[2]="\033[1;32m"
