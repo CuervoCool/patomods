@@ -41,6 +41,8 @@ done
 declare -A sdir=( [0]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $1}')" [usr]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $2}')" [cache]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $3}')" [tmp]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $4}')" [base]="$(echo ${sinfo[ruta]}|awk -F '|' '{print $5}')" )
 declare -A sfile=( [py]="$py" [scp]="$(echo ${sinfo[files]})" [usr]="${sdir[0]}/info.user" )
 
+mkdir -p ${sdir[*]}
+
 function msg(){
 local colors="/etc/new-adm-color"
 if [[ ! -e $colors ]]; then
