@@ -49,7 +49,9 @@ $(echo ${sinfo[ruta]})
 $(echo ${sinfo[name]})
 $(echo ${sinfo[files]})
 $(echo ${sinfo[versao]})
+$(echo ${scolor[@]})
 eof
+export scolor
 chmod +rwx /bin/ejecutar/info.script
 
 function msg(){
