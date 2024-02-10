@@ -323,6 +323,7 @@ case $2 in
 			(
 	declare -f msg dependencias menu_func fun_tit
 	declare -f selection_fun print_center del values_user
+	export -f fun_bar
 			) &> /dev/null 2>&1
  ;;
  --limpiar-home)
